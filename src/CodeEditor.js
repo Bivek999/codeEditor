@@ -4,7 +4,7 @@ import Prism from "prismjs";
 
 import "prismjs/themes/prism.css";
 
-import "prismjs/components/prism-javascript"; // Import additional languages as needed
+import "prismjs/components/prism-javascript";
 
 const CodeEditor = ({ initialCode }) => {
   const [code, setCode] = useState(initialCode || "");
@@ -12,10 +12,7 @@ const CodeEditor = ({ initialCode }) => {
   // Function to transform the code into highlighted HTML
 
   const createHighlightedHtml = (code) => {
-    // Escape HTML and convert newlines to <br> for proper rendering
-
     const escapedCode = code;
-
     return Prism.highlight(
       escapedCode,
       Prism.languages.javascript,
@@ -28,39 +25,25 @@ const CodeEditor = ({ initialCode }) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
-
+    <div style={{ position: "relative",marginLeft:"32rem" }}>
       <textarea
         value={code}
         onChange={handleCodeChange}
         style={{
-          color: "black",
+          // textAlign:"center",
           position: "absolute",
-
           top: 5,
-
           left: -8,
-
           zIndex: 1,
-
           background: "transparent",
-
           color: "transparent",
-
           caretColor: "black",
-
-          width: "100%",
-
-          height: "300px",
-
+          width: "500px",
+          height: "400px",
           resize: "none",
-
           border: "none",
-
           padding: "10px",
-
           fontFamily: "monospace",
-
           fontSize: "16px",
         }}
       />
@@ -69,23 +52,14 @@ const CodeEditor = ({ initialCode }) => {
         style={{
           color: "black",
           position: "absolute",
-
+          textAlign:"left",
           top: 0,
-
           left: 0,
-
           zIndex: 0,
-
           pointerEvents: "none",
-
           fontFamily: "monospace",
-
           fontSize: "16px",
-
-          whiteSpace: "pre-wrap",
-
           wordWrap: "break-word",
-
           overflow: "hidden",
         }}
         dangerouslySetInnerHTML={{ __html: createHighlightedHtml(code) }}
